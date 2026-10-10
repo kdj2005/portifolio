@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeunes Filles Mères Engagées - Faire un Don</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .don-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+            border: 2px solid #D4AF37;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .logo h1 {
+            color: #2c3e50;
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .logo .subtitle {
+            color: #D4AF37;
+            font-size: 1.1em;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo .mission {
+            color: #7f8c8d;
+            font-size: 0.95em;
+            margin-top: 10px;
+            font-weight: 300;
+        }
+
+        .don-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-group {
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: 500;
+            font-size: 0.9em;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            outline: none;
+            background: #fafafa;
+        }
+
+        .form-group input:focus {
+            border-color: #D4AF37;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .submit-btn {
+            background: #D4AF37;
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: #C19B30;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .numero-display {
+            display: none;
+            background: linear-gradient(135deg, #fffaf0 0%, #fff5e6 100%);
+            border-radius: 15px;
+            padding: 30px;
+            border: 2px solid #D4AF37;
+            margin-top: 25px;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .numero-display h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+
+        .numero {
+            font-size: 2em;
+            font-weight: 700;
+            color: #D4AF37;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid #D4AF37;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 2px;
+        }
+
+        .instructions {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            line-height: 1.5;
+            margin: 15px 0;
+        }
+
+        .instructions strong {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .merci {
+            color: #27ae60;
+            font-weight: 500;
+            margin-top: 15px;
+            font-size: 0.95em;
+        }
+
+        .security-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+            color: #7f8c8d;
+            font-size: 0.85em;
+        }
+
+        .security-badge::before {
+            content: '🔒';
+            font-size: 1.2em;
+        }
+
+        @media (max-width: 600px) {
+            .don-container {
+                padding: 30px 25px;
+                margin: 15px;
+            }
+            
+            .logo h1 {
+                font-size: 1.8em;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .numero {
+                font-size: 1.6em;
+                padding: 15px;
+            }
+            
+            .submit-btn {
+                padding: 14px;
+                font-size: 15px;
+            }
+        }
+
+        .simple-animation {
+            animation: subtleGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes subtleGlow {
+            from {
+                box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
+            }
+            to {
+                box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="don-container simple-animation">
+        <div class="logo">
+            <h1>Jeunes Filles Mères Engagées</h1>
+            <div class="subtitle">Soutien et Solidarité</div>
+            <div class="mission">Soutenir l'autonomie des jeunes mères</div>
+        </div>
+
+        <form class="don-form" id="donForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="prenom">PRÉNOM</label>
+                    <input type="text" id="prenom" placeholder="Votre prénom">
+                </div>
+                <div class="form-group">
+                    <label for="nom">NOM</label>
+                    <input type="text" id="nom" placeholder="Votre nom">
+                </div>
+            </div>
+
+            <button type="button" class="submit-btn" onclick="afficherNumero()">
+                💫 FAIRE UN DON
+            </button>
+        </form>
+
+        <div class="numero-display" id="numeroDisplay">
+            <h3>NUMÉRO DE DON</h3>
+            <div class="numero">229 41488899</div>
+            
+            <div class="instructions">
+                <strong>Procédure :</strong><br>
+                1. Ouvrez votre application mobile money<br>
+                2. Sélectionnez "Transfert d'argent"<br>
+                3. Entrez le numéro ci-dessus<br>
+                4. Confirmez le montant de votre don
+            </div>
+            
+            <div class="security-badge">
+                Transaction sécurisée et cryptée
+            </div>
+            
+            <div class="merci">
+                Merci pour votre générosité et votre soutien
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function afficherNumero() {
+            const nom = document.getElementById('nom').value.trim();
+            const prenom = document.getElementById('prenom').value.trim();
+            
+            // Animation simple du bouton
+            const btn = document.querySelector('.submit-btn');
+            btn.style.transform = 'scale(0.98)';
+            setTimeout(() => {
+                btn.style.transform = 'scale(1)';
+            }, 150);
+            
+            // Afficher le numéro après un court délai
+            setTimeout(() => {
+                document.getElementById('numeroDisplay').style.display = 'block';
+                document.getElementById('donForm').style.display = 'none';
+                
+                // Message personnalisé si nom/prénom saisi
+                if (nom || prenom) {
+                    document.querySelector('.merci').textContent = 
+                        `Merci ${prenom || nom} pour votre générosité et votre soutien`;
+                }
+            }, 300);
+        }
+
+        // Focus sur le premier champ au chargement
+        window.onload = function() {
+            document.getElementById('prenom').focus();
+        };
+    </script>
+</body>
+</html>

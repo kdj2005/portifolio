@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualités - Jeunes Filles Mères Engagées</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #f8f9fa;
+            --secondary: #d4af37;
+            --accent: #d4af37;
+            --light: #ffffff;
+            --dark: #3c2a62;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --white: #ffffff;
+            --gray: #6c757d;
+            --dark-gray: #343a40;
+            --transition: all 0.3s ease;
+            --border-radius: 12px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --box-shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: #333;
+            overflow-x: hidden;
+            background-color: #ffffff;
+        }
+
+        /* Navigation */
+        .navbar {
+            padding: 1rem 0;
+            transition: var(--transition);
+            background: rgba(248, 249, 250, 0.98) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--dark) !important;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+
+        .nav-link {
+            font-weight: 500;
+            padding: 0.5rem 1rem !important;
+            margin: 0 0.25rem;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            color: rgba(44, 62, 80, 0.9) !important;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--dark) !important;
+        }
+
+        .btn-donate {
+            background: var(--accent);
+            color: white !important;
+            border-radius: 50px;
+            padding: 0.5rem 1.5rem !important;
+            margin-left: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .btn-donate:hover {
+            background: #b8941f;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(92, 82, 111, 0.9) 0%, rgba(176, 167, 197, 0.7) 100%), url('log.png');
+            color: var(--light);
+            padding: 8rem 0 5rem;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            color: var(--white);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            color: var(--white);
+        }
+
+        /* Breadcrumb */
+        .breadcrumb-container {
+            background-color: #f8f9fa;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .breadcrumb-item a {
+            color: var(--dark);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .breadcrumb-item a:hover {
+            color: var(--accent);
+        }
+
+        .breadcrumb-item.active {
+            color: var(--accent);
+        }
+
+        /* Content Tabs */
+        .content-tabs {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            margin-bottom: 3rem;
+        }
+
+        .nav-pills .nav-link {
+            padding: 1.25rem 1.5rem !important;
+            border-radius: 0;
+            color: var(--dark);
+            font-weight: 600;
+            transition: var(--transition);
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-pills .nav-link.active {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--dark);
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .nav-pills .nav-link:hover {
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .tab-content {
+            padding: 2.5rem;
+        }
+
+        /* Cards */
+        .card {
+            border: none;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: var(--box-shadow);
+            height: 100%;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--box-shadow-hover);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 1.75rem;
+        }
+
+        .card-title {
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .card-text {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Media Cards */
+        .media-card {
+            position: relative;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            height: 100%;
+        }
+
+        .media-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--box-shadow-hover);
+        }
+
+        .media-thumbnail {
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .media-play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(212, 175, 55, 0.85);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            transition: var(--transition);
+            opacity: 0.9;
+        }
+
+        .media-card:hover .media-play-btn {
+            background: var(--accent);
+            transform: translate(-50%, -50%) scale(1.1);
+            opacity: 1;
+        }
+
+        .media-body {
+            padding: 1.5rem;
+            background: white;
+        }
+
+        .media-duration {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(to bottom, #f8f9fa 0%, #e9ecef 100%);
+            color: var(--dark);
+            padding: 5rem 0 2rem;
+            position: relative;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .footer h5 {
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+
+        .footer h5:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--accent);
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .footer-links i {
+            margin-right: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--accent);
+        }
+
+        .social-links {
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--accent);
+            border-radius: 50%;
+            margin-right: 0.75rem;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        /* Pagination */
+        .pagination .page-link {
+            color: var(--dark);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 0.5rem 1rem;
+            margin: 0 0.25rem;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .pagination .page-link:hover {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--dark);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .pagination .page-item.active .page-link {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .tab-content {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 7rem 0 4rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .nav-pills .nav-link {
+                padding: 1rem 1.25rem !important;
+            }
+            
+            .tab-content {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+        }
+
+        .section-title {
+            font-weight: 700;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+            color: var(--dark);
+            font-size: 2.5rem;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-hands-helping me-2"></i>
+                <span class="brand-text">JFME</span>
+                <span class="brand-subtitle d-none d-md-inline">Jeunes Filles Mères Engagées</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="programmes.html">Nos Programmes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="actualites.html">Actualités</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="propos.html">À propos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-donate btn-sm ms-2" href="don.html">Faire un don</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-container">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Actualités</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center hero-content">
+                    <h1>Nos Actualités</h1>
+                    <p>Restez informé de nos dernières actions et réalisations sur le terrain</p>
+                </div>
+            </div>
+            </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="content-tabs">
+                <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="pills-articles-tab" data-bs-toggle="pill" data-bs-target="#pills-articles" type="button" role="tab" aria-controls="pills-articles" aria-selected="true">Articles</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-podcasts-tab" data-bs-toggle="pill" data-bs-target="#pills-podcasts" type="button" role="tab" aria-controls="pills-podcasts" aria-selected="false">Podcasts</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-videos-tab" data-bs-toggle="pill" data-bs-target="#pills-videos" type="button" role="tab" aria-controls="pills-videos" aria-selected="false">Vidéos</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="pills-tabContent">
+                    <!-- Articles Tab -->
+                    <div class="tab-pane fade show active" id="pills-articles" role="tabpanel" aria-labelledby="pills-articles-tab">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card">
+                                    <img src="https://images.unsplash.com/photo-1523050853548-5d1a5c9c1d2e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Programme d'alphabétisation">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <span class="badge bg-primary">Nouveauté</span>
+                                            <small class="text-muted">28 Août 2023</small>
+                                        </div>
+                                        <h3 class="card-title h5">Lancement du programme d'alphabétisation</h3>
+                                        <p class="card-text">Découvrez comment nous aidons les jeunes mères à acquérir des compétences de base en lecture et écriture.</p>
+                                        <a href="#" class="btn btn-link p-0 text-primary">Lire la suite <i class="fas fa-arrow-right ms-1"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card">
+                                    <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Atelier santé maternelle">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <span class="badge bg-success">Événement</span>
+                                            <small class="text-muted">15 Août 2023</small>
+                                        </div>
+                                        <h3 class="card-title h5">Atelier sur la santé maternelle</h3>
+                                        <p class="card-text">Retour en images sur notre atelier dédié à la santé maternelle et infantile.</p>
+                                        <a href="#" class="btn btn-link p-0 text-primary">Lire la suite <i class="fas fa-arrow-right ms-1"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card">
+                                    <img src="https://images.unsplash.com/photo-1516633630673-67bbad747022?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Parcours d'Amina">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <span class="badge bg-info">Témoignage</span>
+                                            <small class="text-muted">1 Août 2023</small>
+                                        </div>
+                                        <h3 class="card-title h5">Le parcours inspirant d'Amina</h3>
+                                        <p class="card-text">Découvrez comment notre programme a transformé la vie d'une jeune mère.</p>
+                                        <a href="#" class="btn btn-link p-0 text-primary">Lire la suite <i class="fas fa-arrow-right ms-1"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card">
+                                    <img src="https://images.unsplash.com/photo-1593113630400-ea4288922497?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Formation professionnelle">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <span class="badge bg-warning">Formation</span>
+                                            <small class="text-muted">22 Juillet 2023</small>
+                                        </div>
+                                        <h3 class="card-title h5">Nouvelle session de formation</h3>
+                                        <p class="card-text">Ouverture des inscriptions pour notre programme de formation en entrepreneuriat.</p>
+                                        <a href="#" class="btn btn-link p-0 text-primary">Lire la suite <i class="fas fa-arrow-right ms-1"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card">
+                                    <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Sensibilisation">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <span class="badge bg-info">Sensibilisation</span>
+                                            <small class="text-muted">10 Juillet 2023</small>
+                                        </div>
+                                        <h3 class="card-title h5">Campagne de sensibilisation</h3>
+                                        <p class="card-text">Nous avons sensibilisé plus de 500 personnes sur les droits des jeunes filles mères.</p>
+                                        <a href="#" class="btn btn-link p-0 text-primary">Lire la suite <i class="fas fa-arrow-right ms-1"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card">
+                                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Célébration">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <span class="badge bg-success">Célébration</span>
+                                            <small class="text-muted">30 Juin 2023</small>
+                                        </div>
+                                        <h3 class="card-title h5">Célébration de la Journée de l'Enfant Africain</h3>
+                                        <p class="card-text">Retour en images sur notre événement spécial pour les enfants de nos bénéficiaires.</p>
+                                        <a href="#" class="btn btn-link p-0 text-primary">Lire la suite <i class="fas fa-arrow-right ms-1"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <nav aria-label="Page navigation" class="mt-5">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1">Précédent</a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Suivant</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    
+                    <!-- Podcasts Tab -->
+                    <div class="tab-pane fade" id="pills-podcasts" role="tabpanel" aria-labelledby="pills-podcasts-tab">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-4">
+                                <div class="media-card">
+                                    <img src="https://images.unsplash.com/photo-1589903308904-d969a5ad15d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="media-thumbnail" alt="Podcast 1">
+                                    <div class="media-play-btn">
+                                        <i class="fas fa-play"></i>
+                                    </div>
+                                    <div class="media-duration">25:18</div>
+                                    <div class="media-body">
+                                        <h3 class="card-title h5">L'autonomisation économique</h3>
+                                        <p class="card-text">Discussion avec nos expertes sur les moyens de développer l'indépendance financière des jeunes mères.</p>
+                                        <a href="#" class="btn btn-link p-0 text-primary">Écouter <i class="fas fa-arrow-right ms-1"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="media-card">
+                                    <img src="https://images.unsplash.com/photo-1549576490-b6b5b0db2604?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="media-thumbnail" alt="Podcast 2">
+                                    <div class="media-play-btn">
+                                        <i class="fas fa-play"></i>
+                                    </div>
+                                    <div class="media-duration">31:42</div>
+                                    <div class="media-body">
+                                        <h3 class="card-title h5">Santé reproductive</h3>
+                                        <p class="card-text">Un épisode dédié à l'éducation à la santé sexuelle et reproductive pour les adolescentes.</p>
+                                        <a href="#" class="btn btn-link p-0 text-primary">Écouter <i class="fas fa-arrow-right ms-1"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="media-card">
+                                    <img src="https://images.unsplash.com/photo-1593113630400-ea4288922497?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="media-thumbnail" alt="Podcast 3">
+                                    <div class="media-play-btn">
+                                        <i class="fas fa-play"></i>
+                                    </div>
+                                    <div class="media-duration">18:55</div>
+                                    <div class="media-body">
+                                        <h3 class="card-title h5">Témoignages de réussite</h3>
+                                        <p class="card-text">Des histoires inspirantes de jeunes mères qui ont surmonté les obstacles pour réussir.</p>
+                                        <a href="#" class="btn btn-link p-0 text-primary">Écouter <i class="fas fa-arrow-right ms-1"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Videos Tab -->
+                    <div class="tab-pane fade" id="pills-videos" role="tabpanel" aria-labelledby="pills-videos-tab">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-4">
+                                <div class="media-card">
+                                    <img src="https://images.unsplash.com/photo-1550672698-0719705099e2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="media-thumbnail" alt="Vidéo 1">
+                                    <div class="media-play-btn">
+                                        <i class="fas fa-play"></i>
+                                    </div>
+                                    <div class="media-duration">04:32</div>
+                                    <div class="media-body">
+                                        <h3 class="card-title h5">Reportage sur notre centre</h3>
+                                        <p class="card-text">Visite guidée de notre centre d'accueil et de formation pour jeunes mères.</p>
+                                        <a href="#" class="btn btn-link p-0 text-primary">Regarder <i class="fas fa-arrow-right ms-1"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="media-card">
+                                    <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="media-thumbnail" alt="Vidéo 2">
+                                    <div class="media-play-btn">
+                                        <i class="fas fa-play"></i>
+                                    </div>
+                                    <div class="media-duration">07:15</div>
+                                    <div class="media-body">
+                                        <h3 class="card-title h5">Atelier de formation</h3>
+                                        <p class="card-text">Découvrez nos ateliers de formation professionnelle en couture et artisanat.</p>
+                                        <a href="#" class="btn btn-link p-0 text-primary">Regarder <i class="fas fa-arrow-right ms-1"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="media-card">
+                                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="media-thumbnail" alt="Vidéo 3">
+                                    <div class="media-play-btn">
+                                        <i class="fas fa-play"></i>
+                                    </div>
+                                    <div class="media-duration">10:24</div>
+                                    <div class="media-body">
+                                        <h3 class="card-title h5">Cérémonie de remise de diplômes</h3>
+                                        <p class="card-text">Célébration des réussites de nos bénéficiaires lors de notre cérémonie annuelle.</p>
+                                        <a href="#" class="btn btn-link p-0 text-primary">Regarder <i class="fas fa-arrow-right ms-1"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <h5>À propos de nous</h5>
+                    <p>Jeunes Filles Mères Engagées est une organisation à but non lucratif œuvrant pour l'autonomisation des jeunes filles mères au Bénin à travers l'éducation, la formation et l'accompagnement.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h5>Liens rapides</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="programmes.html">Nos programmes</a></li>
+                        <li><a href="actualites.html">Actualités</a></li>
+                        <li><a href="propos.html">À propos</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 mb-4 mb-md-0">
+                    <h5>Nos programmes</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Éducation et formation</a></li>
+                        <li><a href="#">Insertion professionnelle</a></li>
+                        <li><a href="#">Soutien psychologique</a></li>
+                        <li><a href="#">Sensibilisation</a></li>
+                        <li><a href="#">Parrainage</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-4">
+                    <h5>Contactez-nous</h5>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt me-2"></i> Cotonou, Bénin</li>
+                        <li><i class="fas fa-phone me-2"></i> +229 XX XX XX XX</li>
+                        <li><i class="fas fa-envelope me-2"></i> contact@jfme-benin.org</li>
+                        <li><i class="fas fa-clock me-2"></i> Lun - Ven: 8h - 17h</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        <p class="mb-0">&copy; 2023 Jeunes Filles Mères Engagées. Tous droits réservés.</p>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <a href="#" class="text-muted me-3">Politique de confidentialité</a>
+                        <a href="#" class="text-muted">Mentions légales</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true
+            });
+        });
+    </script>
+</body>
+</html>

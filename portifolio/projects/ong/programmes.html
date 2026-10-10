@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programmes - Jeunes Filles Mères Engagées</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #f8f9fa;
+            --secondary: #d4af37;
+            --accent: #d4af37;
+            --light: #ffffff;
+            --dark: #3c2a62;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --white: #ffffff;
+            --gray: #6c757d;
+            --dark-gray: #343a40;
+            --transition: all 0.3s ease;
+            --border-radius: 12px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --box-shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: #333;
+            overflow-x: hidden;
+            background-color: #ffffff;
+        }
+
+        /* Navigation */
+        .navbar {
+            padding: 1rem 0;
+            transition: var(--transition);
+            background: rgba(248, 249, 250, 0.98) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--dark) !important;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+
+        .nav-link {
+            font-weight: 500;
+            padding: 0.5rem 1rem !important;
+            margin: 0 0.25rem;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            color: rgba(44, 62, 80, 0.9) !important;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--dark) !important;
+        }
+
+        .btn-donate {
+            background: var(--accent);
+            color: white !important;
+            border-radius: 50px;
+            padding: 0.5rem 1.5rem !important;
+            margin-left: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .btn-donate:hover {
+            background: #b8941f;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(116, 103, 143, 0.9) 0%, rgba(165, 144, 210, 0.7) 100%), url('log.png') ;
+            color: var(--light);
+            padding: 8rem 0 5rem;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            color: var(--white);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            color: var(--white);
+        }
+
+        /* Breadcrumb */
+        .breadcrumb-container {
+            background-color: #f8f9fa;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .breadcrumb-item a {
+            color: var(--dark);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .breadcrumb-item a:hover {
+            color: var(--accent);
+        }
+
+        .breadcrumb-item.active {
+            color: var(--accent);
+        }
+
+        /* Program Cards */
+        .program-card {
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            background: white;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            height: 100%;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .program-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--dark));
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .program-card:hover::before {
+            opacity: 1;
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--box-shadow-hover);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .program-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: var(--accent);
+            transition: var(--transition);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .program-card:hover .program-icon {
+            background: var(--accent);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* Program Details */
+        .program-detail {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 3rem;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .program-detail h2 {
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+
+        .program-detail h2:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+        }
+
+        .program-detail p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .program-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 2rem 0;
+        }
+
+        .program-features li {
+            margin-bottom: 0.75rem;
+            padding-left: 1.75rem;
+            position: relative;
+        }
+
+        .program-features li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(to bottom, #f8f9fa 0%, #e9ecef 100%);
+            color: var(--dark);
+            padding: 5rem 0 2rem;
+            position: relative;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .footer h5 {
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+
+        .footer h5:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--accent);
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .footer-links i {
+            margin-right: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--accent);
+        }
+
+        .social-links {
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--accent);
+            border-radius: 50%;
+            margin-right: 0.75rem;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 7rem 0 4rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .program-detail {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+            
+            .program-detail {
+                padding: 1.5rem;
+            }
+        }
+
+        .section-title {
+            font-weight: 700;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+            color: var(--dark);
+            font-size: 2.5rem;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-hands-helping me-2"></i>
+                <span class="brand-text">JFME</span>
+                <span class="brand-subtitle d-none d-md-inline">Jeunes Filles Mères Engagées</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="programmes.html">Nos Programmes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="actualites.html">Actualités</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="apropos.html">À propos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-donate btn-sm ms-2" href="don.html">Faire un don</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-container">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Nos Programmes</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center hero-content">
+                    <h1>Nos Programmes</h1>
+                    <p>Découvrez nos actions concrètes pour l'autonomisation des jeunes filles mères au Bénin</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programmes Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">Tous nos programmes</h2>
+            
+            <div class="row g-4">
+                <!-- Programme 1 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="program-card">
+                        <div class="program-icon">
+                            <i class="fas fa-female"></i>
+                        </div>
+                        <h3>Autonomisation des Femmes</h3>
+                        <p>Formations professionnelles et accompagnement vers l'emploi pour les femmes en situation de vulnérabilité.</p>
+                        <a href="#" class="btn btn-outline-primary mt-3">En savoir plus</a>
+                    </div>
+                </div>
+                
+                <!-- Programme 2 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="program-card">
+                        <div class="program-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>Éducation et Parrainage</h3>
+                        <p>Soutien scolaire et parrainage pour les enfants issus de milieux défavorisés.</p>
+                        <a href="#" class="btn btn-outline-primary mt-3">En savoir plus</a>
+                    </div>
+                </div>
+                
+                <!-- Programme 3 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="program-card">
+                        <div class="program-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <h3>Santé et Bien-être</h3>
+                        <p>Accès aux soins de santé primaire et sensibilisation à l'hygiène et la prévention.</p>
+                        <a href="#" class="btn btn-outline-primary mt-3">En savoir plus</a>
+                    </div>
+                </div>
+                
+                <!-- Programme 4 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="program-card">
+                        <div class="program-icon">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <h3>Soutien Psychosocial</h3>
+                        <p>Accompagnement personnalisé et groupes de parole pour un mieux-être mental et émotionnel.</p>
+                        <a href="#" class="btn btn-outline-primary mt-3">En savoir plus</a>
+                    </div>
+                </div>
+                
+                <!-- Programme 5 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="program-card">
+                        <div class="program-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <h3>Agroécologie</h3>
+                        <p>Formation aux techniques agricoles durables pour l'autosuffisance alimentaire.</p>
+                        <a href="#" class="btn btn-outline-primary mt-3">En savoir plus</a>
+                    </div>
+                </div>
+                
+                <!-- Programme 6 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="program-card">
+                        <div class="program-icon">
+                            <i class="fas fa-microphone"></i>
+                        </div>
+                        <h3>Plaidoyer et Sensibilisation</h3>
+                        <p>Campagnes de sensibilisation sur les droits des jeunes filles mères dans les communautés.</p>
+                        <a href="#" class="btn btn-outline-primary mt-3">En savoir plus</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Details Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">Détails de nos programmes</h2>
+            
+            <!-- Programme 1 Details -->
+            <div class="program-detail">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <h2>Autonomisation des Femmes</h2>
+                        <p>Notre programme d'autonomisation des femmes vise à offrir aux jeunes mères les compétences et ressources nécessaires pour devenir financièrement indépendantes et s'épanouir personnellement.</p>
+                        <ul class="program-features">
+                            <li>Formation professionnelle en couture, coiffure et artisanat</li>
+                            <li>Ateliers de développement personnel et leadership</li>
+                            <li>Accompagnement à la création de micro-entreprises</li>
+                            <li>Mentorat par des femmes entrepreneures expérimentées</li>
+                            <li>Accès à des micro-crédits à taux préférentiels</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Participer au programme</a>
+                    </div>
+                    <div class="col-lg-6">
+                        <img src="https://images.unsplash.com/photo-1521791055366-0d553872125f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Autonomisation des femmes" class="img-fluid rounded">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Programme 2 Details -->
+            <div class="program-detail">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 order-lg-2">
+                        <h2>Éducation et Parrainage</h2>
+                        <p>Ce programme permet aux enfants des jeunes mères d'accéder à une éducation de qualité et à un accompagnement personnalisé pour briser le cycle de la pauvreté.</p>
+                        <ul class="program-features">
+                            <li>Soutien scolaire après les cours</li>
+                            <li>Fourniture de matériel scolaire et uniformes</li>
+                            <li>Programme de parrainage avec des donateurs</li>
+                            <li>Activités extrascolaires et loisirs éducatifs</li>
+                            <li>Sensibilisation à l'importance de l'éducation</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Devenir parrain/marraine</a>
+                    </div>
+                    <div class="col-lg-6 order-lg-1">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Éducation et parrainage" class="img-fluid rounded">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="mb-4">Vous souhaitez soutenir nos programmes ?</h2>
+                    <p class="lead mb-4">Votre don permet de financer directement nos actions sur le terrain et d'offrir un avenir meilleur aux jeunes filles mères et leurs enfants.</p>
+                    <a href="don.html" class="btn btn-primary btn-lg">Faire un don</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <h5>À propos de nous</h5>
+                    <p>Jeunes Filles Mères Engagées est une organisation à but non lucratif œuvrant pour l'autonomisation des jeunes filles mères au Bénin à travers l'éducation, la formation et l'accompagnement.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h5>Liens rapides</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="programmes.html">Nos programmes</a></li>
+                        <li><a href="actualites.html">Actualités</a></li>
+                        <li><a href="apropos.html">À propos</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 mb-4 mb-md-0">
+                    <h5>Nos programmes</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Éducation et formation</a></li>
+                        <li><a href="#">Insertion professionnelle</a></li>
+                        <li><a href="#">Soutien psychologique</a></li>
+                        <li><a href="#">Sensibilisation</a></li>
+                        <li><a href="#">Parrainage</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-4">
+                    <h5>Contactez-nous</h5>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt me-2"></i> Cotonou, Bénin</li>
+                        <li><i class="fas fa-phone me-2"></i> +229 XX XX XX XX</li>
+                        <li><i class="fas fa-envelope me-2"></i> contact@jfme-benin.org</li>
+                        <li><i class="fas fa-clock me-2"></i> Lun - Ven: 8h - 17h</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        <p class="mb-0">&copy; 2023 Jeunes Filles Mères Engagées. Tous droits réservés.</p>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <a href="#" class="text-muted me-3">Politique de confidentialité</a>
+                        <a href="#" class="text-muted">Mentions légales</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true
+            });
+        });
+    </script>
+</body>
+</html>
